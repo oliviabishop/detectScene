@@ -63,3 +63,4 @@ An explanation of the detectScene function in the Machine Learning Vision projec
     
     
 #### To view function in its entirety click here
+https://github.com/oliviabishop/detectScene/wiki/detectScene-Function
