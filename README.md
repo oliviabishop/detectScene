@@ -9,6 +9,9 @@ An explanation of the detectScene function in the Machine Learning Vision projec
         func detectScene(image: CIImage) { }
         
 ## Step 2 - Loading the Machine Learning Model
+- The first line alerts the user that the scene is being detected
+- VNCoreModel will create a class from the ML model
+- The ML model will be loaded through its generated class, if this fails it should alert the user that the ML model could not be loaded
 
 
         displayString(string: "detecting scene...")
