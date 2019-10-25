@@ -24,7 +24,7 @@ An explanation of the detectScene function in the Machine Learning Vision projec
         }      
         
         
-## Step 3
+## Step 3 - Create a Vision Request
 
         let request = VNCoreMLRequest(model: model) { [weak self] request, error in
             guard let results = request.results as? [VNClassificationObservation],
@@ -34,7 +34,7 @@ An explanation of the detectScene function in the Machine Learning Vision projec
             }
            }
             
-## Step 4 
+## Step 4 - Update the UI
 
         DispatchQueue.main.async { [weak self] in
                 self?.activityIndicator.stopAnimating()
@@ -44,7 +44,7 @@ An explanation of the detectScene function in the Machine Learning Vision projec
                }
               }
               
-## Step 5
+## Step 5 - Run core ML classifier
 
         activityIndicator.startAnimating()
         
