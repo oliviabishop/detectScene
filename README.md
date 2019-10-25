@@ -28,6 +28,9 @@ An explanation of the detectScene function in the Machine Learning Vision projec
         
         
 ## Step 3 - Create a Vision Request
+- After the specified ML model is loaded a vision request needs to be created 
+- A method needs to be set using the object's completetion handler, specifying where the results will be sent after the request has been run
+- The user will recieve a message if the vision request recieves an unexpected result
 
         let request = VNCoreMLRequest(model: model) { [weak self] request, error in
             guard let results = request.results as? [VNClassificationObservation],
@@ -38,6 +41,9 @@ An explanation of the detectScene function in the Machine Learning Vision projec
            }
             
 ## Step 4 - Update the UI
+- DispatchQueue manages the execution of tasks on the apps main (.main) queue. This is scheduled asynchronously (.async) meaning the code will continuously execute while the item runs somewhere else
+- At this point the activity indicator will be set to stop the animation of the progress indicator
+- A string will be displayed based on cofidence/indetifier
 
         DispatchQueue.main.async { [weak self] in
                 self?.activityIndicator.stopAnimating()
@@ -48,6 +54,11 @@ An explanation of the detectScene function in the Machine Learning Vision projec
               }
               
 ## Step 5 - Run core ML classifier
+- The activity indicator is set to start the animation of the progress indicator
+- VNImageRequestHandler processes image analysis requests for the provided image
+- The core ML will be processed on a gloabl dispatch queue
+- perform is called to execute the requests
+- Error handling is used if the code in the do clause fails
 
         activityIndicator.startAnimating()
         
