@@ -21,4 +21,45 @@ An explanation of the detectScene function in the Machine Learning Vision projec
         guard let model = try? VNCoreMLModel(for: VGG16().model) else {
             displayString(string: "Can't load ML model.")
             return
-        }         
+        }      
+        
+        
+## Step 3
+
+        let request = VNCoreMLRequest(model: model) { [weak self] request, error in
+            guard let results = request.results as? [VNClassificationObservation],
+                let _ = results.first else {
+                    self?.displayString(string: "Unexpected result type from VNCoreMLRequest")
+                    return
+            }
+           }
+            
+## Step 4 
+
+        DispatchQueue.main.async { [weak self] in
+                self?.activityIndicator.stopAnimating()
+                for result in results {
+                    self?.displayString(string: "\(Int(result.confidence * 100))% \(result.identifier)")
+                }
+               }
+              }
+              
+## Step 5
+
+        activityIndicator.startAnimating()
+        
+         let handler = VNImageRequestHandler(ciImage: image)
+        DispatchQueue.global(qos: .userInteractive).async {
+            do {
+                try handler.perform([request])
+            } catch {
+                DispatchQueue.main.async { [weak self] in
+                    self?.displayString(string: error.localizedDescription)
+                    self?.activityIndicator.stopAnimating()
+                }
+            }
+        }
+    }
+    
+    
+#### To view function in its entirety click here
