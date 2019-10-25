@@ -12,11 +12,13 @@ An explanation of the detectScene function in the Machine Learning Vision projec
 
 
         displayString(string: "detecting scene...")
+        
         guard let model = try? VNCoreMLModel(for: GoogLeNetPlaces().model) else {
          displayString(string: "Can't load ML model.")
          return
          }
-          guard let model = try? VNCoreMLModel(for: VGG16().model) else {
+        
+        guard let model = try? VNCoreMLModel(for: VGG16().model) else {
             displayString(string: "Can't load ML model.")
             return
         }         
